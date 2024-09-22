@@ -1,0 +1,23 @@
+name: toxic
+channels:
+  - defaults
+dependencies:
+  - ipykernel
+  - ipython
+  - ipython_genutils
+  - jupyter_client
+  - jupyter_core
+  - jupyter
+  - line_profiler
+  - matplotlib
+  - memory_profiler
+  - nltk
+  - numpy
+  - pandas
+  - psutil
+  - python>=3.10
+  - scikit-learn
+  - scipy
+  - seaborn
+  - setuptools
+ 

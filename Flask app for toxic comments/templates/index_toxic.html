@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Toxic Comment Classifier</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href='https://fonts.googleapis.com/css?family=Oswald:wght@200..700&display=swap' rel='stylesheet' type='text/css'>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-image: url("C:/Users/asus/Desktop/Code 2/toxic_comments_classifier-master/Flask app for toxic comments/static/images/54438.jpg");
+      background-color: #36454F;
+      background-size: cover;
+      background-position: center;
+      font-family: 'Oswald', sans-serif;
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 2s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .login {
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      margin: 25px auto;
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 2s ease-in forwards;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1, h2, h3 {
+      font-family: 'Oswald', cursive;
+      color: #000;
+      margin: 0;
+      padding: 10px 0;
+    }
+    form {
+      margin-top: 0px;
+    }
+    input[type="text"] {
+      font-size: 25px;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 2px solid #000;
+      border-radius: 5px;
+      transition: border-color 0.3s ease-in-out;
+    }
+    input[type="text"]:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+    button {
+      margin-top: 10px;
+      font-size: 20px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    .loading-spinner {
+      display: none;
+      margin-top: 20px;
+    }
+    .loading-spinner.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="login">
+    <h1>DETOXIFY</h1>
+    <h2>Is your comment toxic?</h2>
+    <form id="prediction-form" action="{{ url_for('predict') }}" method="post">
+      <input id='text' type="text" name="text" placeholder="Enter your text" required="required" />
+      <button id='button' type="submit" class="btn btn-primary btn-block btn-large"> Predict</button>
+    </form>
+    <div class="loading-spinner" id="loading-spinner">
+      <p>Loading...</p>
+    </div>
+    <h3>
+      {{ pred_tox }} <br><br>
+      {{ pred_sev }} <br><br>
+      {{ pred_obs }} <br><br>
+      {{ pred_ins }} <br><br>
+      {{ pred_thr }} <br><br>
+      {{ pred_ide }} <br><br>
+      <h2> Overall Classification: {{ toxic_label }} </h2>
+    </h3>
+  </div>
+  <script>
+    document.getElementById('prediction-form').addEventListener('submit', function() {
+      document.getElementById('loading-spinner').classList.add('show');
+    });
+  </script>
+</body>
+</html>
